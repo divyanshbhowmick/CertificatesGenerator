@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ceritficates Generator</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        #custom-button {
+            padding: 8px;
+            color: white;
+            background-color: #009578;
+            border: 1px solid #000;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        #custom-button:hover {
+            background-color: #00b28f;
+        }
+
+        #custom-text {
+            margin-left: 10px;
+            font-family: sans-serif;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm2" style="margin: 30vh auto;">
+                <form action="fileUpload.php" method="POST" enctype="multipart/form-data">
+                    <input type="file" name="dataUpload" id="real-file" hidden="hidden" />
+                    <button type="button" id="custom-button">Choose a file</button>
+                    <span id="custom-text">No file chosen, yet.</span>
+                    <br>
+                    <input class="btn btn-primary btn-lg" style="margin: 100px 0 0 80px;" type="submit" id="submit-btn"
+                        name="submit" value="Upload">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        const customButton = document.getElementById('custom-button');
+        const realFileButton = document.getElementById('real-file');
+        const customText = document.getElementById('custom-text');
+
+        customButton.addEventListener('click', function () {
+            realFileButton.click();
+        });
+        realFileButton.addEventListener('change', function () {
+            if (realFileButton.value) {
+                customText.innerHTML = (realFileButton.value).substring(((realFileButton.value).lastIndexOf('\\')) + 1);
+            }
+            else customText.innerHTML = "No file chosen, yet."
+        });
+    </script>
+</body>
+
+</html>
